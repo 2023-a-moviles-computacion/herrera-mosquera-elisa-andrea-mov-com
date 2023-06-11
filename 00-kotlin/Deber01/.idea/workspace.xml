@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d09dfea-7c4e-403c-a2cf-15ae177634c3" name="Changes" comment="" />
+    <list default="true" id="d38206f6-3386-4fbd-84ca-47ec69d81cd1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="2R2pglwFz3ODxoeqKHRxQEK9cML" />
+  <component name="ProjectId" id="2R2qjGEZDGjPj7MLkBqdKkZdAcJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,28 +28,19 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/escritorio.virtual9/.jdks",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "vcs.Git"
+    "WebServerToolWindowFactoryState": "false"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5d09dfea-7c4e-403c-a2cf-15ae177634c3" name="Changes" comment="" />
-      <created>1686458147908</created>
+      <changelist id="d38206f6-3386-4fbd-84ca-47ec69d81cd1" name="Changes" comment="" />
+      <created>1686458660374</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1686458147908</updated>
-      <workItem from="1686458149501" duration="504000" />
+      <updated>1686458660374</updated>
+      <workItem from="1686458662999" duration="336000" />
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
 </project>
