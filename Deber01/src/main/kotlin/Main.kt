@@ -10,6 +10,7 @@ fun main(args: Array<String>) {
 
     while (true) {
         println(
+
             "Hola!!" +
                     "Seleciona una opcion\n" +
                     "1: Sistemas Solares\n" +
