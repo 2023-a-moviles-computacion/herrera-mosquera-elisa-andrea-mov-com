@@ -4,11 +4,6 @@ class Planeta{
     var numeroLunas: Int = 0;
     var diametro: Double = 0.0;
     var masa: Double = 0.0;
-    var distanciaMediaSol: Double = 0.0;
-
-
-
-
 
     constructor(
         idPlaneta: String,
@@ -16,13 +11,13 @@ class Planeta{
         numeroLunas: Int,
         diametro: Double,
         masa: Double,
-        distanciaMediaSol: Double
+
     ) {
         this.idPlaneta = idPlaneta
         this.nombrePlaneta = nombrePlaneta
         this.numeroLunas = numeroLunas
         this.diametro = diametro
         this.masa = masa
-        this.distanciaMediaSol = distanciaMediaSol
+
     }
 }

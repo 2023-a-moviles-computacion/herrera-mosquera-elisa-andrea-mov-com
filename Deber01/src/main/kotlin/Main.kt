@@ -1,19 +1,19 @@
-import sun.jvm.hotspot.oops.CellTypeState.value
+
 import java.io.File
-import java.util.ArrayList
 
 fun main(args: Array<String>) {
-
-    val pathSistemasSolares = "C:/Users/escritorio.virtual9/Documents/GitHub/mov-com-2023A/herrera-mosquera-elisa-andrea-mov-com/00-kotlin/Deber01/src/main/kotlin/SistemaSolar.kt"
-    val pathPlanetas = "C:/Users/escritorio.virtual9/Documents/GitHub/mov-com-2023A/herrera-mosquera-elisa-andrea-mov-com/00-kotlin/Deber01/src/main/kotlin/Planeta.kt"
-    var flag = true
+    val sistemasSolares = ArrayList<SistemaSolar>()
+    val planetas = ArrayList<Planeta>()
     val fileManager = FileManager()
+    val pathSistemaSolar = "C://Users//escritorio.virtual9//Documents//GitHub//mov-com-2023A//herrera-mosquera-elisa-andrea-mov-com//Deber01//src//main//kotlin//SistemaSolar"
+    val pathPlaneta = "C://Users//escritorio.virtual9//Documents//GitHub//mov-com-2023A//herrera-mosquera-elisa-andrea-mov-com//Deber01//src//main//kotlin//Planetas"
 
-    while (flag) {
+    while (true) {
         println(
-            "¡Bienvenido! ¿Qué acción te gustaría realizar?\n" +
-                    "1: Administrar Sistemas Solares\n" +
-                    "2: Administrar Planetas\n" +
+            "Hola!!" +
+                    "Seleciona una opcion\n" +
+                    "1: Sistemas Solares\n" +
+                    "2: Planetas\n" +
                     "3: Salir"
         )
 
@@ -26,56 +26,71 @@ fun main(args: Array<String>) {
 
                 while (flagSistemasSolares) {
                     println(
-                        "¿Qué acción te gustaría realizar en Sistemas Solares?\n" +
-                                "A: Agregar Sistema Solar\n" +
-                                "B: Listar Sistemas Solares\n" +
-                                "C: Buscar Sistema Solar\n" +
-                                "D: Eliminar Sistema Solar\n" +
-                                "E: Guardar Sistemas Solares en un archivo\n" +
-                                "F: Regresar\n" +
-                                "G: Salir"
+                        "Seleciona la opcion a realizar en Sistema Solar\n" +
+                                "1: Agregar Sistema Solar y Guardar Sistemas Solares en un archivo\n" +
+                                "2: Listar Sistemas Solares\n" +
+                                "3: Buscar Sistema Solar\n" +
+                                "4: Eliminar Sistema Solar\n" +
+
+                                "5: Regresar\n" +
+                                "6: Salir"
                     )
                     print("Ingresa la opción: ")
                     var optionSistemasSolares = readLine()?.uppercase()
 
                     when (optionSistemasSolares) {
-                        "A" -> {
+                        "1" -> {
+                            val sistemaSolar = ingresarSistemaSolar()
+                            sistemasSolares.add(sistemaSolar)
+                            println("\nSistema Solar agregado exitosamente.\n")
 
-                            print("\nIngresa la edad: ")
-                            var value = readLine()
-                            val edad: Int? = value?.toInt()
-                            print("\nIngresa el nombre: ")
-                            value = readLine()
-                            val nombre: String = value.toString()
-                            print("\nIngresa el tipo: ")
-                            value = readLine()
-                            val tipo: String = value.toString()
-                            print("\nIngresa la galaxia: ")
-                            value = readLine()
-                            val galaxia: String = value.toString()
-
-                            val content:String= "$edad-$nombre $tipo $galaxia"
-
-                            fileManager.saveTextFile(fileName = "$pathSistemasSolares$nombre.txt", content = content)
-                            println("\nSe ha guardado con éxito!\n")
-                        }
-                        "B" -> {
-                            // Listar sistemas solares
-                            // ...
-                        }
-                        "E" -> {
-                            // Guardar sistemas solares en un archivo de texto
-                            val listOfFiles = fileManager.listTextFile(pathSistemasSolares)
-                            val content = listOfFiles.joinToString("\n")
-                            fileManager.saveTextFile("$pathSistemasSolares/sistemas_solares.txt", content)
+                            val content = sistemasSolares.joinToString("\n") { it.toString() }
+                            fileManager.saveTextFile(fileName = pathSistemaSolar+"$sistemaSolar.txt", content = content)
                             println("\nLa lista de sistemas solares se ha guardado en un archivo de texto.\n")
                         }
-                        "F" -> {
+                        "2" -> {
+                            println("\nListado de Sistemas Solares:")
+                            for (sistemaSolar in sistemasSolares) {
+                                println("Nombre: ${sistemaSolar.nombre}")
+                                println("Edad: ${sistemaSolar.edad}")
+                                println("Tipo: ${sistemaSolar.tipo}")
+                                println("Galaxia: ${sistemaSolar.galaxia}")
+                                println("Distancia: ${sistemaSolar.distancia}\n")
+                            }
+                        }
+                        "3" -> {
+                            print("\nIngresa el nombre del Sistema Solar a buscar: ")
+                            val nombreBusqueda = readLine().toString()
+                            val resultadoBusqueda = sistemasSolares.filter { it.nombre.equals(nombreBusqueda, ignoreCase = true) }
+                            if (resultadoBusqueda.isNotEmpty()) {
+                                println("\nSistema Solar encontrado:")
+                                val sistemaSolarEncontrado = resultadoBusqueda.first()
+                                println("Nombre: ${sistemaSolarEncontrado.nombre}")
+                                println("Edad: ${sistemaSolarEncontrado.edad}")
+                                println("Tipo: ${sistemaSolarEncontrado.tipo}")
+                                println("Galaxia: ${sistemaSolarEncontrado.galaxia}")
+                                println("Distancia: ${sistemaSolarEncontrado.distancia}\n")
+                            } else {
+                                println("\nNo se encontró ningún Sistema Solar con ese nombre.\n")
+                            }
+                        }
+                        "4" -> {
+                            print("\nIngresa el nombre del Sistema Solar a eliminar: ")
+                            val nombreEliminacion = readLine().toString()
+                            val resultadoEliminacion = sistemasSolares.removeIf { it.nombre.equals(nombreEliminacion, ignoreCase = true) }
+                            if (resultadoEliminacion) {
+                                println("\nSistema Solar eliminado exitosamente.\n")
+                            } else {
+                                println("\nNo se encontró ningún Sistema Solar con ese nombre.\n")
+                            }
+                        }
+
+                        "5" -> {
                             flagSistemasSolares = false
                         }
-                        "G" -> {
+                        "6" -> {
                             flagSistemasSolares = false
-                            flag = false
+                            return
                         }
                         else -> {
                             println("Opción inválida seleccionada.")
@@ -89,35 +104,72 @@ fun main(args: Array<String>) {
 
                 while (flagPlanetas) {
                     println(
-                        "¿Qué acción te gustaría realizar en Planetas?\n" +
-                                "A: Agregar Planeta\n" +
-                                "B: Buscar Planeta\n" +
-                                "C: Eliminar Planeta\n" +
-                                "D: Guardar Planetas en un archivo\n" +
-                                "E: Regresar\n" +
-                                "F: Salir"
+                        "Seleciona la opcion a realizar en Planetas\n" +
+                                "1: Agregar Planeta y guardar en un archivo \n" +
+                                "2: Listar Planetas\n" +
+                                "3: Buscar Planeta\n" +
+                                "4: Eliminar Planeta\n" +
+                                "5: Regresar\n" +
+                                "6: Salir"
                     )
                     print("Ingresa la opción: ")
                     var optionPlanetas = readLine()?.uppercase()
 
                     when (optionPlanetas) {
-                        "A" -> {
-                            // Agregar un planeta
-                            // ...
-                        }
-                        "D" -> {
-                            // Guardar planetas en un archivo de texto
-                            val listOfFiles = fileManager.listTextFile(pathPlanetas)
-                            val content = listOfFiles.joinToString("\n")
-                            fileManager.saveTextFile("$pathPlanetas/planetas.txt", content)
+                        "1" -> {
+                            val planeta = ingresarPlaneta()
+                            planetas.add(planeta)
+                            println("\nPlaneta agregado exitosamente.\n")
+
+                            val content = planetas.joinToString("\n") { it.toString() }
+                            fileManager.saveTextFile(fileName = pathPlaneta+"$planeta.txt", content = content)
                             println("\nLa lista de planetas se ha guardado en un archivo de texto.\n")
                         }
-                        "E" -> {
+                        "2" -> {
+                            println("\nListado de Planetas:")
+                            for (planeta in planetas) {
+                                println("Nombre: ${planeta.nombrePlaneta}")
+                                println("ID: ${planeta.idPlaneta}")
+                                println("Número de Lunas: ${planeta.numeroLunas}")
+                                println("Diámetro: ${planeta.diametro}")
+                                println("Masa: ${planeta.masa}")
+
+                            }
+                        }
+                        "3" -> {
+                            print("\nIngresa el nombre del Planeta a buscar: ")
+                            val nombreBusqueda = readLine().toString()
+                            val resultadoBusqueda = planetas.filter { it.nombrePlaneta.equals(nombreBusqueda, ignoreCase = true) }
+                            if (resultadoBusqueda.isNotEmpty()) {
+                                println("\nPlaneta encontrado:")
+                                val planetaEncontrado = resultadoBusqueda.first()
+                                println("Nombre: ${planetaEncontrado.nombrePlaneta}")
+                                println("ID: ${planetaEncontrado.idPlaneta}")
+                                println("Número de Lunas: ${planetaEncontrado.numeroLunas}")
+                                println("Diámetro: ${planetaEncontrado.diametro}")
+                                println("Masa: ${planetaEncontrado.masa}")
+
+                            } else {
+                                println("\nNo se encontró ningún Planeta con ese nombre.\n")
+                            }
+                        }
+                        "4" -> {
+                            print("\nIngresa el nombre del Planeta a eliminar: ")
+                            val nombreEliminacion = readLine().toString()
+                            val resultadoEliminacion = planetas.removeIf { it.nombrePlaneta.equals(nombreEliminacion, ignoreCase = true) }
+                            if (resultadoEliminacion) {
+                                println("\nPlaneta eliminado exitosamente.\n")
+                            } else {
+                                println("\nNo se encontró ningún Planeta con ese nombre.\n")
+                            }
+                        }
+
+                        "5" -> {
                             flagPlanetas = false
                         }
-                        "F" -> {
+                        "6" -> {
                             flagPlanetas = false
-                            flag = false
+                            return
                         }
                         else -> {
                             println("Opción inválida seleccionada.")
@@ -127,8 +179,8 @@ fun main(args: Array<String>) {
             }
 
             "3" -> {
-                flag = false
                 println("¡Gracias!")
+                return
             }
 
             else -> {
@@ -138,41 +190,47 @@ fun main(args: Array<String>) {
     }
 }
 
+fun ingresarSistemaSolar(): SistemaSolar {
+    println("\n--- Ingresar Sistema Solar ---")
+    print("Edad: ")
+    val edad = readLine()?.toInt()
+    print("Nombre: ")
+    val nombre = readLine().toString()
+    print("Tipo: ")
+    val tipo = readLine().toString()
+    print("Galaxia: ")
+    val galaxia = readLine().toString()
+    print("Distancia: ")
+    val distancia = readLine()?.toDouble()
+
+    return SistemaSolar(edad, nombre, tipo, galaxia, distancia ?: 0.0)
+}
+
+fun ingresarPlaneta(): Planeta {
+    println("\n--- Ingresar Planeta ---")
+    print("ID del Planeta: ")
+    val idPlaneta = readLine().toString()
+    print("Nombre del Planeta: ")
+    val nombrePlaneta = readLine().toString()
+    print("Número de Lunas: ")
+    val numeroLunas = readLine()?.toInt()
+    print("Diámetro: ")
+    val diametro = readLine()?.toDouble()
+    print("Masa: ")
+    val masa = readLine()?.toDouble()
+    return Planeta(idPlaneta, nombrePlaneta, numeroLunas ?: 0, diametro ?: 0.0, masa ?: 0.0)
+}
+
+
+
 class FileManager {
-
-    constructor(){
-
-    }
-
-
     fun saveTextFile(fileName: String, content: String) {
         val file = File(fileName)
         file.writeText(content)
     }
 
-
-
     fun readTextFile(fileName: String): String {
         val file = File(fileName)
         return file.readText()
     }
-
-    fun listTextFile(directoryPath:String): ArrayList<String> {
-        val listOfFiles: ArrayList<String> = arrayListOf<String>()
-        val directory = File(directoryPath)
-        val files = directory.listFiles()
-
-        if (files != null) {
-            for (file in files) {
-                if (file.isFile) {
-                    listOfFiles.add(file.name)
-                }
-            }
-        }
-        return listOfFiles
-    }
-
-
-
-
 }
