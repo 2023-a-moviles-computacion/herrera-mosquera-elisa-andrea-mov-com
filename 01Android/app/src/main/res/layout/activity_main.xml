@@ -5,30 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2196F3"
-    android:backgroundTint="#BC6363"
+    android:backgroundTint="#F6F6F6"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_Ciclo_Vida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#C3426D"
-        android:text="@string/condicion1_texto"
-        android:textColor="#FFF8E1"
+        android:text="Ciclo Vida"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.611"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_list_view"
+        app:layout_constraintVertical_bias="0.355"
+        tools:layout_editor_absoluteX="148dp" />
 
     <Button
-        android:id="@+id/bnt_ciclo_vida"
+        android:id="@+id/btn_ir_list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
-        android:text="CicloVida"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView" />
+        android:text="List View"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Ciclo_Vida"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btn_Ciclo_Vida"
+        tools:layout_editor_absoluteY="102dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
