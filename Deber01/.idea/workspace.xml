@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="d38206f6-3386-4fbd-84ca-47ec69d81cd1" name="Changes" comment="" />
+=======
+    <list default="true" id="d38206f6-3386-4fbd-84ca-47ec69d81cd1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber-01" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/src/main/kotlin/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/src/main/kotlin/Planeta.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../00-kotlin/Deber01/src/main/kotlin/SistemaSolar.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/InputOutput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/InputOutput.kt" afterDir="false" />
+    </list>
+>>>>>>> 1b942aea995951499496aceab1d0fd95d2390825
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,8 +110,11 @@
       <workItem from="1686622615061" duration="184000" />
       <workItem from="1686635241984" duration="544000" />
       <workItem from="1686635865013" duration="346000" />
+<<<<<<< HEAD
       <workItem from="1686973848457" duration="4420000" />
       <workItem from="1687140574096" duration="637000" />
+=======
+>>>>>>> 1b942aea995951499496aceab1d0fd95d2390825
     </task>
     <task id="LOCAL-00001" summary="Subiendo deber1">
       <created>1686589789435</created>
