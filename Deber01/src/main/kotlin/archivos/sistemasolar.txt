@@ -1,0 +1,14 @@
+Sistema Solar Details
+ edad: 12
+ nombre: aa
+ tipo: aa 
+ galaxia: aa
+ distancia: 12.4
+
+Sistema Solar Details
+
+ edad: 34
+ nombre: bb
+ tipo: bb 
+ galaxia: bb
+ distancia: 34.6

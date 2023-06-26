@@ -1,3 +1,5 @@
+package Clases
+
 class SistemaSolar {
     var edad: Int? = 0;
     var nombre: String =" ";
@@ -11,6 +13,21 @@ class SistemaSolar {
         this.tipo = tipo
         this.galaxia = galaxia
         this.distancia = distancia
+    }
+    override fun toString(): String {
+        return """
+           Sistema Solar Informacion
+            edad: $edad
+            nombre: $nombre
+            tipo: $tipo 
+            galaxia: $galaxia
+            distancia: $distancia
+            """.trimIndent()
+    }
+
+    fun add(sistemaSolar: SistemaSolar) {
+
+
     }
 }
 

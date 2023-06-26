@@ -1,12 +1,17 @@
 
+import Clases.Planeta
+import Clases.SistemaSolar
 import java.io.File
 
 fun main(args: Array<String>) {
     val sistemasSolares = ArrayList<SistemaSolar>()
     val planetas = ArrayList<Planeta>()
     val fileManager = FileManager()
-    val pathSistemaSolar = "C://Users//escritorio.virtual9//Documents//GitHub//mov-com-2023A//herrera-mosquera-elisa-andrea-mov-com//Deber01//src//main//kotlin//SistemaSolar"
-    val pathPlaneta = "C://Users//escritorio.virtual9//Documents//GitHub//mov-com-2023A//herrera-mosquera-elisa-andrea-mov-com//Deber01//src//main//kotlin//Planetas"
+    val pathSistemaSolar = "/Users/escritorio.virtual9/Documents/GitHub/mov-com-2023A/herrera-mosquera-elisa-andrea-mov-com/Deber01/src/main/kotlin/archivos/sistemasolar.txt"
+    val pathPlaneta = "/Users/escritorio.virtual9/Documents/GitHub/mov-com-2023A/herrera-mosquera-elisa-andrea-mov-com/Deber01/src/main/kotlin/archivos/planetas.txt"
+
+
+
 
     while (true) {
         println(
@@ -19,7 +24,7 @@ fun main(args: Array<String>) {
         )
 
         print("Ingresa la opción: ")
-        val option = readLine()?.uppercase()
+        val option = readlnOrNull()?.uppercase()
 
         when (option) {
             "1" -> {
@@ -46,10 +51,11 @@ fun main(args: Array<String>) {
                             println("\nSistema Solar agregado exitosamente.\n")
 
                             val content = sistemasSolares.joinToString("\n") { it.toString() }
-                            fileManager.saveTextFile(fileName = pathSistemaSolar+"$sistemaSolar.txt", content = content)
+                            fileManager.saveTextFile(fileName = pathSistemaSolar, content = content)
                             println("\nLa lista de sistemas solares se ha guardado en un archivo de texto.\n")
                         }
                         "2" -> {
+
                             println("\nListado de Sistemas Solares:")
                             for (sistemaSolar in sistemasSolares) {
                                 println("Nombre: ${sistemaSolar.nombre}")
@@ -58,10 +64,17 @@ fun main(args: Array<String>) {
                                 println("Galaxia: ${sistemaSolar.galaxia}")
                                 println("Distancia: ${sistemaSolar.distancia}\n")
                             }
+                            val listOfFiles: ArrayList<String> = fileManager.listTextFile(pathSistemaSolar)
+                            for (name in listOfFiles) {
+                                val num:Int = name.indexOf(name)+1
+                                println("$num: $name")
+
+                            }
                         }
+
                         "3" -> {
                             print("\nIngresa el nombre del Sistema Solar a buscar: ")
-                            val nombreBusqueda = readLine().toString()
+                            val nombreBusqueda = readlnOrNull().toString()
                             val resultadoBusqueda = sistemasSolares.filter { it.nombre.equals(nombreBusqueda, ignoreCase = true) }
                             if (resultadoBusqueda.isNotEmpty()) {
                                 println("\nSistema Solar encontrado:")
@@ -106,10 +119,10 @@ fun main(args: Array<String>) {
                 while (flagPlanetas) {
                     println(
                         "Seleciona la opcion a realizar en Planetas\n" +
-                                "1: Agregar Planeta y guardar en un archivo \n" +
+                                "1: Agregar Clases.Planeta y guardar en un archivo \n" +
                                 "2: Listar Planetas\n" +
-                                "3: Buscar Planeta\n" +
-                                "4: Eliminar Planeta\n" +
+                                "3: Buscar Clases.Planeta\n" +
+                                "4: Eliminar Clases.Planeta\n" +
                                 "5: Regresar\n" +
                                 "6: Salir"
                     )
@@ -120,10 +133,10 @@ fun main(args: Array<String>) {
                         "1" -> {
                             val planeta = ingresarPlaneta()
                             planetas.add(planeta)
-                            println("\nPlaneta agregado exitosamente.\n")
+                            println("\nClases.Planeta agregado exitosamente.\n")
 
                             val content = planetas.joinToString("\n") { it.toString() }
-                            fileManager.saveTextFile(fileName = pathPlaneta+"$planeta.txt", content = content)
+                            fileManager.saveTextFile(fileName = pathPlaneta, content = content)
                             println("\nLa lista de planetas se ha guardado en un archivo de texto.\n")
                         }
                         "2" -> {
@@ -138,11 +151,11 @@ fun main(args: Array<String>) {
                             }
                         }
                         "3" -> {
-                            print("\nIngresa el nombre del Planeta a buscar: ")
+                            print("\nIngresa el nombre del Clases.Planeta a buscar: ")
                             val nombreBusqueda = readLine().toString()
                             val resultadoBusqueda = planetas.filter { it.nombrePlaneta.equals(nombreBusqueda, ignoreCase = true) }
                             if (resultadoBusqueda.isNotEmpty()) {
-                                println("\nPlaneta encontrado:")
+                                println("\nClases.Planeta encontrado:")
                                 val planetaEncontrado = resultadoBusqueda.first()
                                 println("Nombre: ${planetaEncontrado.nombrePlaneta}")
                                 println("ID: ${planetaEncontrado.idPlaneta}")
@@ -151,17 +164,17 @@ fun main(args: Array<String>) {
                                 println("Masa: ${planetaEncontrado.masa}")
 
                             } else {
-                                println("\nNo se encontró ningún Planeta con ese nombre.\n")
+                                println("\nNo se encontró ningún Clases.Planeta con ese nombre.\n")
                             }
                         }
                         "4" -> {
-                            print("\nIngresa el nombre del Planeta a eliminar: ")
+                            print("\nIngresa el nombre del Clases.Planeta a eliminar: ")
                             val nombreEliminacion = readLine().toString()
                             val resultadoEliminacion = planetas.removeIf { it.nombrePlaneta.equals(nombreEliminacion, ignoreCase = true) }
                             if (resultadoEliminacion) {
-                                println("\nPlaneta eliminado exitosamente.\n")
+                                println("\nClases.Planeta eliminado exitosamente.\n")
                             } else {
-                                println("\nNo se encontró ningún Planeta con ese nombre.\n")
+                                println("\nNo se encontró ningún Clases.Planeta con ese nombre.\n")
                             }
                         }
 
@@ -191,6 +204,8 @@ fun main(args: Array<String>) {
     }
 }
 
+
+
 fun ingresarSistemaSolar(): SistemaSolar {
     println("\n--- Ingresar Sistema Solar ---")
     print("Edad: ")
@@ -207,11 +222,13 @@ fun ingresarSistemaSolar(): SistemaSolar {
     return SistemaSolar(edad, nombre, tipo, galaxia, distancia ?: 0.0)
 }
 
+
+
 fun ingresarPlaneta(): Planeta {
-    println("\n--- Ingresar Planeta ---")
-    print("ID del Planeta: ")
+    println("\n--- Ingresar Clases.Planeta ---")
+    print("ID del Clases.Planeta: ")
     val idPlaneta = readLine().toString()
-    print("Nombre del Planeta: ")
+    print("Nombre del Clases.Planeta: ")
     val nombrePlaneta = readLine().toString()
     print("Número de Lunas: ")
     val numeroLunas = readLine()?.toInt()
@@ -222,8 +239,6 @@ fun ingresarPlaneta(): Planeta {
     return Planeta(idPlaneta, nombrePlaneta, numeroLunas ?: 0, diametro ?: 0.0, masa ?: 0.0)
 }
 
-
-
 class FileManager {
     fun saveTextFile(fileName: String, content: String) {
         val file = File(fileName)
@@ -233,5 +248,20 @@ class FileManager {
     fun readTextFile(fileName: String): String {
         val file = File(fileName)
         return file.readText()
+    }
+
+    fun listTextFile(directoryPath:String): ArrayList<String> {
+        val listOfFiles: ArrayList<String> = arrayListOf<String>()
+        val directory = File(directoryPath)
+        val files = directory.listFiles()
+
+        if (files != null) {
+            for (file in files) {
+                if (file.isFile) {
+                    listOfFiles.add(file.name)
+                }
+            }
+        }
+        return listOfFiles
     }
 }

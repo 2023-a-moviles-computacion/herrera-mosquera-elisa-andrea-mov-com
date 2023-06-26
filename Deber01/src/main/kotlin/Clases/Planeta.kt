@@ -1,3 +1,5 @@
+package Clases
+
 class Planeta{
     var idPlaneta: String = "";
     var nombrePlaneta: String = "";
@@ -19,5 +21,17 @@ class Planeta{
         this.diametro = diametro
         this.masa = masa
 
+    }
+
+    override fun toString(): String {
+        return """
+           Planeta Informacion
+            idPlaneta: $idPlaneta
+            nombrePlaneta: $nombrePlaneta
+            numeroLunas: $numeroLunas
+            diametro: $diametro
+            masa: $masa
+            
+            """.trimIndent()
     }
 }
