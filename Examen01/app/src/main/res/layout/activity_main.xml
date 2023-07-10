@@ -1,143 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:layout_height="match_parent">
 
-    <!-- Nombre -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="start">
+    <Button
+        android:id="@+id/btnPlanetas"
+        android:layout_width="187dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="64dp"
 
+        android:text="Gestor de Planetas ->"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnSistemaSolar"
+        app:layout_constraintStart_toStartOf="@+id/btnSistemaSolar" />
 
+    <Button
+        android:id="@+id/btnSistemaSolar"
+        android:layout_width="155dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="56dp"
 
-        <EditText
-            android:id="@+id/etNombre"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:hint="Ingrese el nombre"
-            android:minHeight="48dp" />
-
-    </LinearLayout>
-
-    <!-- Edad -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="start">
-
-
-
-        <EditText
-            android:id="@+id/etEdad"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:hint="Ingrese la edad"
-            android:minHeight="48dp" />
-
-    </LinearLayout>
-
-    <!-- Galaxia -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="start">
-
-
-        <EditText
-            android:id="@+id/etGalaxia"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:hint="Ingrese la galaxia"
-            android:minHeight="48dp" />
-
-    </LinearLayout>
-
-    <!-- Distancia -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="start">
-
-
-
-        <EditText
-            android:id="@+id/etDistancia"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:hint="Ingrese la distancia"
-            android:minHeight="48dp" />
-
-    </LinearLayout>
-
-    <!-- Descripción -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="start">
-
-
-        <EditText
-            android:id="@+id/etDescripcion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:hint="Ingrese la descripción"
-            android:minHeight="48dp" />
-
-    </LinearLayout>
-
-    <!-- Espacio entre las opciones y los botones -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
-
-    <!-- Botones -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnAddEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GUARDAR"
-            android:layout_marginEnd="8dp" />
-
-
-    </LinearLayout>
-
-    <!-- Lista de elementos -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        tools:listitem="@layout/item_rv_sistemasolar"
+        android:text="Gestor de Sistema Solar  ->"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imgTitulo"
+        android:layout_width="218dp"
+        android:layout_height="221dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSistemaSolar"
+        app:layout_constraintDimensionRatio="H,1:1"
+
+        app:layout_constraintHorizontal_bias="0.564"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118"
+        app:srcCompat="@drawable/title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

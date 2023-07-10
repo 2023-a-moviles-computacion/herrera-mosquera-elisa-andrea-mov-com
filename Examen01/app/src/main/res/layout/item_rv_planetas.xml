@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SistemaSolar">
+    tools:context=".Planetas">
 
     <Button
         android:id="@+id/btnAgregarR"
@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.911"
-        app:rippleColor="@color/yellow" />
+         />
 
     <ImageButton
         android:id="@+id/btnEditR"
@@ -47,4 +47,3 @@
         app:srcCompat="@drawable/_60829" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
