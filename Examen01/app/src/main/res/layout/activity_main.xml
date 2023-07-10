@@ -1,70 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="8dp">
 
+    <!-- Nombre -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="start">
+
+
 
         <EditText
-            android:id="@+id/etPlaneta"
-            android:layout_width="match_parent"
+            android:id="@+id/etNombre"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Planeta"/>
-
-        <EditText
-            android:id="@+id/etId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Id"
-            android:inputType="number"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:hint="Ingrese el nombre"
             android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/etNumeroLunas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Numero de lunas"
-            android:inputType="number"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/etDiametro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Diametro"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/etMasa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Masa"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp" />
-
-        <Button
-            android:id="@+id/btnAddUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="agregarPlaneta" />
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPlanetas"
+    <!-- Edad -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_rv_planetas"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start">
+
+
+
+        <EditText
+            android:id="@+id/etEdad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:hint="Ingrese la edad"
+            android:minHeight="48dp" />
+
+    </LinearLayout>
+
+    <!-- Galaxia -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start">
+
+
+        <EditText
+            android:id="@+id/etGalaxia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:hint="Ingrese la galaxia"
+            android:minHeight="48dp" />
+
+    </LinearLayout>
+
+    <!-- Distancia -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start">
+
+
+
+        <EditText
+            android:id="@+id/etDistancia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:hint="Ingrese la distancia"
+            android:minHeight="48dp" />
+
+    </LinearLayout>
+
+    <!-- Descripción -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start">
+
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:hint="Ingrese la descripción"
+            android:minHeight="48dp" />
+
+    </LinearLayout>
+
+    <!-- Espacio entre las opciones y los botones -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <!-- Botones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnAddEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR"
+            android:layout_marginEnd="8dp" />
+
+
+    </LinearLayout>
+
+    <!-- Lista de elementos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        tools:listitem="@layout/item_rv_sistemasolar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
 
 </LinearLayout>
+

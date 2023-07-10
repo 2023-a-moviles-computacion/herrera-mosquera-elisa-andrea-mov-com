@@ -1,122 +1,94 @@
 package com.example.examen01
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Database
-import androidx.room.Room
-import com.example.examen01.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), AdaptadorListener {
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.examen01.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity(), SistemaSolarAdapter.OnItemClickListener {
+
+    var dataSet: MutableList<SistemaSolar> = arrayListOf()
+    lateinit var mAdapter: SistemaSolarAdapter
 
     lateinit var binding: ActivityMainBinding
 
-    var listaPlanetas: MutableList<Planeta> = mutableListOf()
-
-    lateinit var adatador: AdaptadorPlanetas
-
-    lateinit var room: DBPrueba
-
-    lateinit var planeta: Planeta
+    var isEditar = false
+    var posicion = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rvPlanetas.layoutManager = LinearLayoutManager(this)
+        mAdapter = SistemaSolarAdapter(this)
+        binding.rvList.layoutManager = LinearLayoutManager(this)
+        binding.rvList.adapter = mAdapter
 
-        room = Room.databaseBuilder(this, DBPrueba::class.java, "dbPruebas").build()
+        binding.btnAddEdit.setOnClickListener {
+            if (!isEditar) {
+                val nombre = binding.etNombre.text.toString().trim()
+                val edad = binding.etEdad.text.toString().toInt()
+                val galaxia = binding.etGalaxia.text.toString().trim()
+                val distancia = binding.etDistancia.text.toString().toDouble()
+                val descripcion = binding.etDescripcion.text.toString().trim()
 
-        obtenerPlanetas(room)
+                val sistemaSolar = SistemaSolar(nombre, edad, galaxia, distancia, descripcion)
+                dataSet.add(sistemaSolar)
 
-        binding.btnAddUpdate.setOnClickListener {
-            if(binding.etPlaneta.text.isNullOrEmpty() || binding.etId.text.isNullOrEmpty() || binding.etNumeroLunas.text.isNullOrEmpty()|| binding.etDiametro.text.isNullOrEmpty()|| binding.etMasa.text.isNullOrEmpty() ) {
-                Toast.makeText(this, "DEBES LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                mAdapter.submitList(dataSet)
+                mAdapter.notifyDataSetChanged()
+
+                binding.etNombre.setText("")
+                binding.etEdad.setText("")
+                binding.etGalaxia.setText("")
+                binding.etDistancia.setText("")
+                binding.etDescripcion.setText("")
+            } else {
+                val nombre = binding.etNombre.text.toString()
+                val edad = binding.etEdad.text.toString().toInt()
+                val galaxia = binding.etGalaxia.text.toString()
+                val distancia = binding.etDistancia.text.toString().toDouble()
+                val descripcion = binding.etDescripcion.text.toString()
+
+                dataSet[posicion].nombre = nombre
+                dataSet[posicion].edad = edad
+                dataSet[posicion].galaxia = galaxia
+                dataSet[posicion].distancia = distancia
+                dataSet[posicion].descripcion = descripcion
+
+                posicion = -1
+                isEditar = false
+
+                mAdapter.submitList(dataSet)
+                mAdapter.notifyDataSetChanged()
+
+                binding.etNombre.setText("")
+                binding.etEdad.setText("")
+                binding.etGalaxia.setText("")
+                binding.etDistancia.setText("")
+                binding.etDescripcion.setText("")
             }
-
-            if (binding.btnAddUpdate.text.equals("agregar")) {
-                planeta = Planeta(
-                    binding.etPlaneta.text.toString().trim(),
-                    binding.etId.text.toString().toInt(),
-                    binding.etNumeroLunas.text.toString().toInt(),
-                    binding.etDiametro.text.toString().toDouble(),
-                    binding.etMasa.text.toString().toDouble(),
-
-                )
-
-                agregarPlaneta(room, planeta)
-            } else if(binding.btnAddUpdate.text.equals("actualizar")) {
-                planeta.id = binding.etId.text.toString().toInt()
-
-                actualizarPlaneta(room, planeta)
-            }
-        }
-
-    }
-
-    fun obtenerPlanetas(room: DBPrueba) {
-        lifecycleScope.launch {
-            listaPlanetas = room.daoPlaneta().obtenerPlanetas()
-            adatador = AdaptadorPlanetas(listaPlanetas, this@MainActivity)
-            binding.rvPlanetas.adapter = adatador
-        }
-    }
-
-    fun agregarPlaneta(room: DBPrueba, planeta: Planeta) {
-       lifecycleScope.launch {
-            room.daoPlaneta().agregarPlaneta(planeta)
-            obtenerPlanetas(room)
-            limpiarCampos()
-        }
-    }
-
-    fun actualizarPlaneta(room: DBPrueba, planeta: Planeta) {
-        lifecycleScope.launch {
-            room.daoPlaneta().actualizarPlaneta(planeta.planeta, planeta.id)
-            obtenerPlanetas(room)
-            limpiarCampos()
         }
     }
 
 
+    override fun onItemEditar(position: Int, item: SistemaSolar) {
+        isEditar = true
+        posicion = position
 
-    fun limpiarCampos() {
-        planeta.planeta = ""
-        planeta.id = 0
-        planeta.numeroLunas = 0
-        planeta.diametro = 0.0
-        planeta.masa = 0.0
-        binding.etPlaneta.setText("")
-        binding.etId.setText("")
-        binding.etNumeroLunas.setText("")
-        binding.etDiametro.setText("")
-        binding.etMasa.setText("")
-
-        if (binding.btnAddUpdate.text.equals("actualizar")) {
-            binding.btnAddUpdate.setText("agregar")
-            binding.etPlaneta.isEnabled = true
-        }
-
+        binding.etNombre.setText(item.nombre)
+        binding.etEdad.setText(item.edad.toString())
+        binding.etGalaxia.setText(item.galaxia)
+        binding.etDistancia.setText(item.distancia.toString())
+        binding.etDescripcion.setText(item.descripcion)
     }
 
-    override fun onEditItemClick(planeta: Planeta) {
-        binding.btnAddUpdate.setText("actualizar")
-        binding.etPlaneta.isEnabled = false
-        this.planeta = planeta
-        binding.etPlaneta.setText(this.planeta.planeta)
-        binding.etId.setText(this.planeta.id)
-    }
-
-    override fun onDeleteItemClick(planeta: Planeta) {
-        lifecycleScope.launch {
-            room.daoPlaneta().borrarPlaneta(planeta.planeta)
-            adatador.notifyDataSetChanged()
-            obtenerPlanetas(room)
-        }
+    override fun onItemBorrar(position: Int) {
+        dataSet.removeAt(position)
+        mAdapter.submitList(dataSet)
+        mAdapter.notifyDataSetChanged()
     }
 }
+
+
