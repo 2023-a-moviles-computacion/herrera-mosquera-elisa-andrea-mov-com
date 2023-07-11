@@ -6,22 +6,22 @@
 
     <Button
         android:id="@+id/btnPlanetas"
-        android:layout_width="187dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="309dp"
+        android:layout_height="55dp"
 
         android:text="Gestor de Planetas ->"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/btnSistemaSolar"
-        app:layout_constraintStart_toStartOf="@+id/btnSistemaSolar" />
+        app:layout_constraintStart_toStartOf="@+id/btnSistemaSolar"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnSistemaSolar"
-        android:layout_width="155dp"
-        android:layout_height="42dp"
+        android:layout_width="300dp"
+        android:layout_height="62dp"
         android:layout_marginBottom="56dp"
 
-        android:text="Gestor de Sistema Solar  ->"
+        android:text="Gestor de Sistema Solar->"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
 
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.118"
-        app:srcCompat="@drawable/title" />
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

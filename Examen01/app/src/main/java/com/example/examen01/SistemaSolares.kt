@@ -6,6 +6,6 @@ import android.os.Bundle
 class SistemaSolares : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sistemasolares)
+        setContentView(R.layout.item_rv_sistemasolar)
     }
 }

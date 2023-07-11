@@ -8,15 +8,15 @@ package com.example.examen01
 
 
     class Planeta(
-        var idPlaneta: String = "",
-        var nombrePlaneta: String = "",
-        var numeroLunas: Int = 0,
-        var diametro: Double = 0.0,
-        var masa: Double = 0.0,
+        val id: Int,
+        val nombrePlaneta: String = "",
+        val numeroLunas: Int = 0,
+        val diametro: Double = 0.0,
+        val masa: Double = 0.0,
     )
     {
         companion object {
-        private val archivo_planetas =
+        private val archivo_planetas = "C:\\Users\\escritorio.virtual9\\Documents\\GitHub\\mov-com-2023A\\herrera-mosquera-elisa-andrea-mov-com\\Examen01\\app\\src\\main\\java\\com\\example\\examen01\\kotlin\\Kotlin\\planeta.txt"
 
 
         fun desplegarPlanetas(): List<Planeta> {
@@ -36,7 +36,7 @@ package com.example.examen01
         fun crearPlaneta(planeta: Planeta) {
             val planetas = desplegarPlanetas().toMutableList()
             planetas.add(planeta)
-            guardarPlanet(planetas)
+            guardarPlaneta(planetas)
         }
 
         fun idDisponible(): Int {
@@ -74,7 +74,7 @@ package com.example.examen01
 
         override fun toString(): String {
             return """
-            Planeta #$idPlaneta
+            Planeta #$id
             Nombre: $nombrePlaneta
             NumeroLunas: $numeroLunas
             Diametro: $diametro

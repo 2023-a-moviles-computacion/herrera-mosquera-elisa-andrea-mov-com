@@ -37,14 +37,27 @@ class MainActivity : AppCompatActivity() {
                     Intent.ACTION_PICK,
                     ContactsContract.CommonDataKinds.Phone.CONTENT_URI
                 )
+
+                val callbackIntentPickUri
                 callbackIntentPickUri.launch(intentConRespuesta)
             }
         val botonIntentExplicito = findViewById<Button>(R.id.btn_ir_intent_explicito)
         botonIntentExplicito
             .setOnClickListener {
-                abrirActividadConParametros(CIntentzExplicitoParametros::class.java)
+                abrirActividadConParametros(ClnIntentExplicitoParametros::class.java)
             }
 
+        val botonSqlite = findViewById<Button>(R.id.btn_SQlite)
+        botonSqlite
+            .setOnClickListener{
+                irActividad(ECrudEntenador::class.java)
+            }
+
+        val botonRView = findViewById<Button>(R.id.btn_reccycle_view)
+        botonRView
+            .setOnClickListener{
+                irActividad(FRecyclerView::class.java)
+            }
 }
 fun abrirActividadConParametros(
     clase: Class<*>
