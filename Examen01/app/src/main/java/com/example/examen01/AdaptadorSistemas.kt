@@ -45,6 +45,7 @@ class AdaptadorSistemas(
         return listaSistemas.size
     }
 
+    
     inner class ViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView) {
 
         val cvSistema = itemView.findViewById<CardView>(R.id.cvSistema)

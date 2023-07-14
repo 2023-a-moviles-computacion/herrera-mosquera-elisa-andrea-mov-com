@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [Planeta::class],
-    version = 1
+    version = 2
 )
 abstract class DBPlanetas: RoomDatabase() {
     abstract fun daoPlaneta(): DaoPlaneta

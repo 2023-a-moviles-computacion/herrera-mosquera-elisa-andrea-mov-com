@@ -13,13 +13,9 @@ import kotlinx.coroutines.launch
 class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
 
     lateinit var binding: ActivityMain2Binding
-
-
-
     var listaPlanetas: MutableList<Planeta> = mutableListOf()
-
     lateinit var adatador: AdaptadorPlanetas
-
+    lateinit var room: DBPrueba
     lateinit var room2: DBPlanetas
 
     lateinit var planeta: Planeta
@@ -28,10 +24,12 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
         super.onCreate(savedInstanceState)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.rvPlanetas.layoutManager = LinearLayoutManager(this)
+        room = Room.databaseBuilder(this, DBPrueba:: class.java, "dbPrueba").build()
 
         room2 = Room.databaseBuilder(this, DBPlanetas::class.java, "dbPlanetas").build()
+
+        //Obtener el nombre del  Sistema para relacionarlo desde el intent
 
         obtenerPlanetas(room2)
 
