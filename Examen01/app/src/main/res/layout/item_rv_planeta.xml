@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvSistema"
+        android:id="@+id/cvPlaneta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
@@ -19,15 +19,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvSistema"
+                android:id="@+id/tvPlaneta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="Sistema Solar"
+                android:hint="Nombre del Planeta"
                 android:padding="5dp" />
 
             <TextView
-                android:id="@+id/tvEdad"
+                android:id="@+id/tvEdadPlaneta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Edad"
@@ -35,7 +35,7 @@
                 android:padding="5dp" />
 
             <TextView
-                android:id="@+id/tvDescripcion"
+                android:id="@+id/tvDescripcionPlaneta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Descripcion"
@@ -45,18 +45,10 @@
 
 
             <Button
-                android:id="@+id/btnBorrar"
+                android:id="@+id/btnBorrarP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Borrar"
-                android:layout_gravity="center"
-                android:padding="5dp"/>
-
-            <Button
-                android:id="@+id/btnCrear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Crear"
                 android:layout_gravity="center"
                 android:padding="5dp"/>
         </LinearLayout>

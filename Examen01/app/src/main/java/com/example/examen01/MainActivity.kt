@@ -42,12 +42,15 @@ class MainActivity : AppCompatActivity(), AdaptadorListener {
                 sistema = Sistema(
                     binding.etSistemaSolar.text.toString().trim(),
                     binding.etEdad.text.toString().trim(),
+                  //  binding.etGalaxia.text.toString().trim(),
                     binding.etDescripcion.text.toString().trim()
+
                 )
 
                 agregarSistema(room, sistema)
             } else if(binding.btnAddUpdate.text.equals("actualizar")) {
                 sistema.edad = binding.etEdad.text.toString().trim()
+               // sistema.galaxia =binding.etGalaxia.text.toString().trim()
                 sistema.descripcion =binding.etDescripcion.text.toString().trim()
 
                 actualizarSistema(room, sistema)
@@ -83,9 +86,11 @@ class MainActivity : AppCompatActivity(), AdaptadorListener {
     fun limpiarCampos() {
         sistema.sistema = ""
         sistema.edad = ""
+      //  sistema.galaxia =""
         sistema.descripcion=""
         binding.etSistemaSolar.setText("")
         binding.etEdad.setText("")
+       // binding.etGalaxia.setText("")
         binding.etDescripcion.setText("")
 
         if (binding.btnAddUpdate.text.equals("actualizar")) {

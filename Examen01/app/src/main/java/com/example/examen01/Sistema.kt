@@ -9,5 +9,7 @@ import androidx.room.PrimaryKey
 data class Sistema(
     @PrimaryKey var sistema: String,
     @ColumnInfo(name = "edad") var edad: String,
-    @ColumnInfo(name = "descripcion") var descripcion: String
+   // @ColumnInfo(name = "galaxia") var galaxia:String,
+   @ColumnInfo(name = "descripcion") var descripcion: String
+
 )
