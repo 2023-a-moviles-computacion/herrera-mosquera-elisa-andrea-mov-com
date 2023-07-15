@@ -1,0 +1,14 @@
+Planeta Informacion
+ idPlaneta: 
+ nombrePlaneta: Tierra
+ numeroLunas: 1
+ diametro: 12742.0
+ masa: 5.848575757E9
+ 
+Planeta Informacion
+ idPlaneta: 2
+ nombrePlaneta: Pluton
+ numeroLunas: 34
+ diametro: 2389284.09
+ masa: 1283823.9384
+ 

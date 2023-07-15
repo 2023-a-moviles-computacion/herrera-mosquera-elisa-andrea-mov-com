@@ -1,6 +1,6 @@
 Sistema Solar Informacion
- edad: 12
- nombre: bb
- tipo: bb 
- galaxia: bb
- distancia: 12.5
+ edad: 1000
+ nombre: Nombre
+ tipo: Humanos 
+ galaxia: Via Lactea
+ distancia: 30000.0

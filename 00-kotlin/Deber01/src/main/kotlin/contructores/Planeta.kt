@@ -1,3 +1,5 @@
+package contructores
+
 class Planeta{
     var idPlaneta: String = "";
     var nombrePlaneta: String = "";
@@ -20,5 +22,18 @@ class Planeta{
         this.diametro = diametro
         this.masa = masa
         this.distanciaMediaSol = distanciaMediaSol
+    }
+
+    override fun toString(): String {
+        return """
+        Planeta Details:
+        
+        idPlaneta: $idPlaneta
+        nombrePlaneta: $nombrePlaneta
+        numeroLunas: $numeroLunas
+        diametro: $diametro
+        masa:= $masa
+        distanciaMediaSol: $distanciaMediaSol
+        """.trimIndent()
     }
 }

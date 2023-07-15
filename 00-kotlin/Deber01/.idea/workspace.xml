@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d38206f6-3386-4fbd-84ca-47ec69d81cd1" name="Changes" comment="" />
+    <list default="true" id="d38206f6-3386-4fbd-84ca-47ec69d81cd1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Planeta.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SistemaSolar.kt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +58,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="contructores" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
@@ -79,6 +89,8 @@
       <workItem from="1686581047038" duration="39000" />
       <workItem from="1686581339617" duration="2493000" />
       <workItem from="1686622615061" duration="184000" />
+      <workItem from="1689398771433" duration="307000" />
+      <workItem from="1689399191204" duration="1475000" />
     </task>
     <task id="LOCAL-00001" summary="Subiendo deber1">
       <created>1686589789435</created>
