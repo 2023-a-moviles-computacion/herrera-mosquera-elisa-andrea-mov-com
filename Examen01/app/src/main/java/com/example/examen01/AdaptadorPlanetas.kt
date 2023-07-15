@@ -43,6 +43,6 @@ class AdaptadorPlanetas(
         val tvCodigoSistemaPlaneta = itemView.findViewById<TextView>(R.id.tvCodigoSistema)
         val tvPlaneta = itemView.findViewById<TextView>(R.id.tvPlaneta)
         val tvEdadPlaneta = itemView.findViewById<TextView>(R.id.tvEdadPlaneta)
-        val btnBorrarP = itemView.findViewById<Button>(R.id.btnBorrar)
+        val btnBorrarP = itemView.findViewById<Button>(R.id.btnBorrarP)
     }
 }

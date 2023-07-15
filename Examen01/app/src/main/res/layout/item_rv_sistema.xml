@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/tvCodigoSistema"
-                android:layout_width="match_parent"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="codigoSistema"
@@ -28,7 +28,7 @@
 
             <TextView
                 android:id="@+id/tvSistema"
-                android:layout_width="match_parent"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="Sistema Solar"
@@ -36,10 +36,10 @@
 
             <TextView
                 android:id="@+id/tvEdad"
-                android:layout_width="match_parent"
+                android:layout_width="247dp"
                 android:layout_height="wrap_content"
-                android:hint="Edad"
                 android:gravity="center"
+                android:hint="Edad"
                 android:padding="5dp" />
 
 
@@ -48,15 +48,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Borrar"
-                android:layout_gravity="center"
+                android:layout_gravity="right"
                 android:padding="5dp"/>
 
             <Button
                 android:id="@+id/btnCrear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Crear"
-                android:layout_gravity="center"
+                android:text="CREAR PLANETA"
+                android:layout_gravity="right"
                 android:padding="5dp"/>
         </LinearLayout>
 
