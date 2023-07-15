@@ -21,11 +21,11 @@ class AdaptadorSistemas(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val sistema = listaSistemas[position]
-
+        holder.tvCodigoSistema.text = sistema.codigoSistema.toString()
         holder.tvSistema.text = sistema.sistema
         holder.tvEdad.text = sistema.edad
        // holder.tvGalaxia.text =sistema.galaxia
-        holder.tvDescripcion.text =sistema.descripcion
+       // holder.tvDescripcion.text =sistema.descripcion
 
         holder.cvSistema.setOnClickListener {
             listener.onEditItemClick(sistema)
@@ -35,7 +35,9 @@ class AdaptadorSistemas(
             listener.onDeleteItemClick(sistema)
         }
         holder.btnCrear.setOnClickListener {
+
             val intent = Intent(holder.itemView.context, MainActivity2::class.java)
+            intent.putExtra("codigoSistema", sistema.codigoSistema)
             holder.itemView.context.startActivity(intent)
         }
     }
@@ -49,10 +51,11 @@ class AdaptadorSistemas(
     inner class ViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView) {
 
         val cvSistema = itemView.findViewById<CardView>(R.id.cvSistema)
+        val tvCodigoSistema = itemView.findViewById<TextView>(R.id.tvCodigoSistema)
         val tvSistema = itemView.findViewById<TextView>(R.id.tvSistema)
         val tvEdad = itemView.findViewById<TextView>(R.id.tvEdad)
      //   val tvGalaxia = itemView.findViewById<TextView>(R.id.tvGalaxia)
-        val tvDescripcion = itemView.findViewById<TextView>(R.id.tvDescripcion)
+       // val tvDescripcion = itemView.findViewById<TextView>(R.id.tvDescripcion)
         val btnBorrar = itemView.findViewById<Button>(R.id.btnBorrar)
         val btnCrear = itemView.findViewById<Button>(R.id.btnCrear)
     }

@@ -8,17 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.examen01.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers
 
 class MainActivity : AppCompatActivity(), AdaptadorListener {
 
     lateinit var binding: ActivityMainBinding
-
     var listaSistemas: MutableList<Sistema> = mutableListOf()
-
     lateinit var adatador: AdaptadorSistemas
-
     lateinit var room: DBPrueba
-
     lateinit var sistema: Sistema
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,17 +31,18 @@ class MainActivity : AppCompatActivity(), AdaptadorListener {
         obtenerSistemas(room)
 
         binding.btnAddUpdate.setOnClickListener {
-            if(binding.etSistemaSolar.text.isNullOrEmpty() || binding.etEdad.text.isNullOrEmpty() || binding.etDescripcion.text.isNullOrEmpty()) {
+            if(binding.etSistema.text.isNullOrEmpty() || binding.etEdad.text.isNullOrEmpty()) {
                 Toast.makeText(this, "DEBES LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (binding.btnAddUpdate.text.equals("agregar")) {
                 sistema = Sistema(
-                    binding.etSistemaSolar.text.toString().trim(),
+                    binding.etCodigoSistema.text.toString().toInt(),
+                    binding.etSistema.text.toString().trim(),
                     binding.etEdad.text.toString().trim(),
                   //  binding.etGalaxia.text.toString().trim(),
-                    binding.etDescripcion.text.toString().trim()
+                  //  binding.etDescripcion.text.toString().trim()
 
                 )
 
@@ -51,8 +50,8 @@ class MainActivity : AppCompatActivity(), AdaptadorListener {
             } else if(binding.btnAddUpdate.text.equals("actualizar")) {
                 sistema.edad = binding.etEdad.text.toString().trim()
                // sistema.galaxia =binding.etGalaxia.text.toString().trim()
-                sistema.descripcion =binding.etDescripcion.text.toString().trim()
-
+               // sistema.descripcion =binding.etDescripcion.text.toString().trim()
+                sistema.codigoSistema = binding.etCodigoSistema.text.toString().toInt()
                 actualizarSistema(room, sistema)
             }
         }
@@ -77,41 +76,46 @@ class MainActivity : AppCompatActivity(), AdaptadorListener {
 
     fun actualizarSistema(room: DBPrueba, sistema: Sistema) {
         lifecycleScope.launch {
-            room.daoSistema().actualizarSistema(sistema.sistema, sistema.edad, sistema.descripcion)
+            room.daoSistema().actualizarSistema(sistema.codigoSistema, sistema.sistema, sistema.edad)
             obtenerSistemas(room)
             limpiarCampos()
         }
     }
 
     fun limpiarCampos() {
+        sistema.codigoSistema=0
         sistema.sistema = ""
         sistema.edad = ""
       //  sistema.galaxia =""
-        sistema.descripcion=""
-        binding.etSistemaSolar.setText("")
+       //// sistema.descripcion=""
+
+        binding.etCodigoSistema.setText("")
+        binding.etSistema.setText("")
         binding.etEdad.setText("")
        // binding.etGalaxia.setText("")
-        binding.etDescripcion.setText("")
+        //binding.etDescripcion.setText("")
+
 
         if (binding.btnAddUpdate.text.equals("actualizar")) {
             binding.btnAddUpdate.setText("agregar")
-            binding.etSistemaSolar.isEnabled = true
+            binding.etCodigoSistema.isEnabled = true
         }
 
     }
 
     override fun onEditItemClick(sistema: Sistema) {
         binding.btnAddUpdate.setText("actualizar")
-        binding.etSistemaSolar.isEnabled = false
+        binding.etCodigoSistema.isEnabled = false
         this.sistema = sistema
-        binding.etSistemaSolar.setText(this.sistema.sistema)
+        binding.etCodigoSistema.setText(this.sistema.codigoSistema.toString())
+        binding.etSistema.setText(this.sistema.sistema)
         binding.etEdad.setText(this.sistema.edad)
-        binding.etDescripcion.setText(this.sistema.descripcion)
-    }
+       // binding.etDescripcion.setText(this.sistema.descripcion)
 
+    }
     override fun onDeleteItemClick(sistema: Sistema) {
         lifecycleScope.launch {
-            room.daoSistema().borrarSistema(sistema.sistema)
+            room.daoSistema().borrarSistema(sistema.codigoSistema)
             adatador.notifyDataSetChanged()
             obtenerSistemas(room)
         }

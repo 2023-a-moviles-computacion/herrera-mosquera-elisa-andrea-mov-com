@@ -5,10 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "planetas")
-class Planeta (
+class Planeta(
     @PrimaryKey var planeta: String,
     @ColumnInfo(name = "edadPlaneta") var edadPlaneta: String,
     // @ColumnInfo(name = "galaxia") var galaxia:String,
-    @ColumnInfo(name = "descripcionPlaneta") var descripcionPlaneta: String
+    //@ColumnInfo(name = "descripcionPlaneta") var descripcionPlaneta: String,
+    @ColumnInfo(name ="codigoSistema") var codigoSistema: Int,
 
-    )
+)

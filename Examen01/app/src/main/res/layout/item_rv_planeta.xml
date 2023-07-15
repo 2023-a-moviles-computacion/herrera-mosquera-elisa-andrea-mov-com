@@ -19,6 +19,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvCodigoSistema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Codigo"
+                android:padding="5dp" />
+            <TextView
                 android:id="@+id/tvPlaneta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,16 +40,6 @@
                 android:hint="Edad"
                 android:gravity="center"
                 android:padding="5dp" />
-
-            <TextView
-                android:id="@+id/tvDescripcionPlaneta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Descripcion"
-                android:gravity="center"
-                android:padding="5dp" />
-
-
 
             <Button
                 android:id="@+id/btnBorrarP"

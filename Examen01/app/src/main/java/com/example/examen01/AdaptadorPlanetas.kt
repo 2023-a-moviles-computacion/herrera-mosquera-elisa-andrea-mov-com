@@ -23,15 +23,14 @@ class AdaptadorPlanetas(
 
         holder.tvPlaneta.text = planeta.planeta
         holder.tvEdadPlaneta.text = planeta.edadPlaneta
-        // holder.tvGalaxia.text =sistema.galaxia
-        holder.tvDescripcionPlaneta.text =planeta.descripcionPlaneta
+        holder.tvCodigoSistemaPlaneta.text = planeta.codigoSistema.toString()
 
         holder.cvPlaneta.setOnClickListener {
-            listener.onEditItemClick(planeta)
+            listener.onEditItemClick(planeta, planeta.codigoSistema)
         }
 
         holder.btnBorrarP.setOnClickListener {
-            listener.onDeleteItemClick(planeta)
+            listener.onDeleteItemClick(planeta, planeta.codigoSistema)
         }
     }
 
@@ -39,13 +38,11 @@ class AdaptadorPlanetas(
         return listaPlanetas.size
     }
 
-    inner class ViewHolder(ItemView: View): RecyclerView.ViewHolder(ItemView) {
-        val cvPlaneta= itemView.findViewById<CardView>(R.id.cvPlaneta)
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val cvPlaneta = itemView.findViewById<CardView>(R.id.cvPlaneta)
+        val tvCodigoSistemaPlaneta = itemView.findViewById<TextView>(R.id.tvCodigoSistema)
         val tvPlaneta = itemView.findViewById<TextView>(R.id.tvPlaneta)
         val tvEdadPlaneta = itemView.findViewById<TextView>(R.id.tvEdadPlaneta)
-        //   val tvGalaxia = itemView.findViewById<TextView>(R.id.tvGalaxia)
-        val tvDescripcionPlaneta = itemView.findViewById<TextView>(R.id.tvDescripcionPlaneta)
-        val btnBorrarP= itemView.findViewById<Button>(R.id.btnBorrar)
+        val btnBorrarP = itemView.findViewById<Button>(R.id.btnBorrar)
     }
-
 }

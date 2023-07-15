@@ -14,10 +14,13 @@ interface DaoSistema {
     @Insert
     suspend fun agregarSistema(sistema: Sistema)
 
-    @Query("UPDATE sistemas set edad=:edad, descripcion=:descripcion WHERE sistema=:sistema")
-    suspend fun actualizarSistema(sistema: String, edad: String, descripcion: String)
+    @Query("UPDATE sistemas set sistema=:sistema,edad=:edad WHERE codigoSistema=:codigoSistema")
+    suspend fun actualizarSistema(codigoSistema: Int,sistema: String, edad: String)
 
-    @Query("DELETE FROM sistemas WHERE sistema=:sistema")
-    suspend fun borrarSistema(sistema: String)
+    @Query("DELETE FROM sistemas WHERE codigoSistema=:codigoSistema")
+    suspend fun borrarSistema(codigoSistema: Int)
+
+    @Query("SELECT codigoSistema FROM sistemas LIMIT 1")
+    suspend fun obtenerCodigoActual(): Int?
 
 }

@@ -7,14 +7,14 @@ import androidx.room.Query
 @Dao
 interface DaoPlaneta {
 
-    @Query("SELECT * FROM planetas")
-    suspend fun obtenerPlanetas(): MutableList<Planeta>
+    @Query("SELECT * FROM planetas WHERE codigoSistema =:codigoSistema")
+    suspend fun obtenerPlanetaPorCodigoPlaneta(codigoSistema: Int): MutableList<Planeta>
 
     @Insert
     suspend fun agregarPlaneta(planeta: Planeta)
 
-    @Query("UPDATE planetas set edadPlaneta=:edadPlaneta, descripcionPlaneta=:descripcionPlaneta WHERE planeta=:planeta")
-    suspend fun actualizarPlaneta(planeta: String, edadPlaneta: String, descripcionPlaneta: String)
+    @Query("UPDATE planetas set edadPlaneta=:edadPlaneta, codigoSistema=:codigoSistema WHERE planeta=:planeta")
+    suspend fun actualizarPlaneta(planeta: String, edadPlaneta: String,codigoSistema: Int)
 
     @Query("DELETE FROM planetas WHERE planeta=:planeta")
     suspend fun borrarPlaneta(planeta: String)
