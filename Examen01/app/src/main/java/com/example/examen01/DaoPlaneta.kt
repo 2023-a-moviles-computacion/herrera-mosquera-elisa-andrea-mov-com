@@ -13,8 +13,8 @@ interface DaoPlaneta {
     @Insert
     suspend fun agregarPlaneta(planeta: Planeta)
 
-    @Query("UPDATE planetas set edadPlaneta=:edadPlaneta, codigoSistema=:codigoSistema WHERE planeta=:planeta")
-    suspend fun actualizarPlaneta(planeta: String, edadPlaneta: String,codigoSistema: Int)
+    @Query("UPDATE planetas set edadPlaneta=:edadPlaneta, descripcionP=:descripcionP,codigoSistema=:codigoSistema WHERE planeta=:planeta")
+    suspend fun actualizarPlaneta(planeta: String, edadPlaneta: String, descripcionP: String, codigoSistema: Int)
 
     @Query("DELETE FROM planetas WHERE planeta=:planeta")
     suspend fun borrarPlaneta(planeta: String)

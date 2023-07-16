@@ -22,7 +22,9 @@ class AdaptadorPlanetas(
         val planeta = listaPlanetas[position]
 
         holder.tvPlaneta.text = planeta.planeta
-        holder.tvEdadPlaneta.text = planeta.edadPlaneta
+        holder.tvEdadPlaneta.text = planeta.edadPlaneta.toString()
+        holder.tvDescripcionP.text = planeta.descripcionP
+       // holder.tvMasa.text = planeta.masa
         holder.tvCodigoSistemaPlaneta.text = planeta.codigoSistema.toString()
 
         holder.cvPlaneta.setOnClickListener {
@@ -43,6 +45,8 @@ class AdaptadorPlanetas(
         val tvCodigoSistemaPlaneta = itemView.findViewById<TextView>(R.id.tvCodigoSistema)
         val tvPlaneta = itemView.findViewById<TextView>(R.id.tvPlaneta)
         val tvEdadPlaneta = itemView.findViewById<TextView>(R.id.tvEdadPlaneta)
+        val tvDescripcionP = itemView.findViewById<TextView>(R.id.tvDescripcionP)
+       // val tvMasa = itemView.findViewById<TextView>(R.id.tvMasa)
         val btnBorrarP = itemView.findViewById<Button>(R.id.btnBorrarP)
     }
 }

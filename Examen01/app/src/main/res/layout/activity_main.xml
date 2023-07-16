@@ -36,6 +36,20 @@
             android:hint="Edad"
             android:inputType="text"
             android:minHeight="48dp" />
+        <EditText
+            android:id="@+id/etGalaxia"
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:hint="Galaxia"
+            android:inputType="text"
+            android:minHeight="48dp" />
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:hint="Descripcion"
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/btnAddUpdate"

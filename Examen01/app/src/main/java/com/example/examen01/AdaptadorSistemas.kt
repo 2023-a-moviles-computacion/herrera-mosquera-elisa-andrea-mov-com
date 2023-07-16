@@ -24,8 +24,8 @@ class AdaptadorSistemas(
         holder.tvCodigoSistema.text = sistema.codigoSistema.toString()
         holder.tvSistema.text = sistema.sistema
         holder.tvEdad.text = sistema.edad
-       // holder.tvGalaxia.text =sistema.galaxia
-       // holder.tvDescripcion.text =sistema.descripcion
+        holder.tvGalaxia.text =sistema.galaxia
+       holder.tvDescripcion.text =sistema.descripcion
 
         holder.cvSistema.setOnClickListener {
             listener.onEditItemClick(sistema)
@@ -54,8 +54,8 @@ class AdaptadorSistemas(
         val tvCodigoSistema = itemView.findViewById<TextView>(R.id.tvCodigoSistema)
         val tvSistema = itemView.findViewById<TextView>(R.id.tvSistema)
         val tvEdad = itemView.findViewById<TextView>(R.id.tvEdad)
-     //   val tvGalaxia = itemView.findViewById<TextView>(R.id.tvGalaxia)
-       // val tvDescripcion = itemView.findViewById<TextView>(R.id.tvDescripcion)
+        val tvGalaxia = itemView.findViewById<TextView>(R.id.tvGalaxia)
+       val tvDescripcion = itemView.findViewById<TextView>(R.id.tvDescripcion)
         val btnBorrar = itemView.findViewById<Button>(R.id.btnBorrar)
         val btnCrear = itemView.findViewById<Button>(R.id.btnCrear)
     }

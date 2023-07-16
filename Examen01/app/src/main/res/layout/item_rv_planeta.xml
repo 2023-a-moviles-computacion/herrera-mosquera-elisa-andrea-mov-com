@@ -42,6 +42,15 @@
                 android:gravity="center"
                 android:hint="Edad"
                 android:padding="5dp" />
+            <TextView
+                android:id="@+id/tvDescripcionP"
+                android:layout_width="237dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Descripcion Planeta"
+                android:padding="5dp" />
+
+
 
             <Button
                 android:id="@+id/btnBorrarP"

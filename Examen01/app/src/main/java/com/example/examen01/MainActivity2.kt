@@ -32,7 +32,7 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
         obtenerPlanetas(room2, codigoSistema)
 
         binding.btnAddUpdateP.setOnClickListener {
-            if(binding.etPlaneta.text.isNullOrEmpty() || binding.etEdadPlaneta.text.isNullOrEmpty()) {
+            if(binding.etPlaneta.text.isNullOrEmpty() || binding.etEdadPlaneta.text.isNullOrEmpty() || binding.etDescripcionP.text.isNullOrEmpty()) {
                 Toast.makeText(this, "DEBES LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -42,7 +42,8 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
                     binding.etPlaneta.text.toString().trim(),
                     binding.etEdadPlaneta.text.toString().trim(),
                     //  binding.etGalaxia.text.toString().trim(),
-                    //binding.etDescripcionPlaneta.text.toString().trim(),
+                    binding.etDescripcionP.text.toString().trim(),
+                  //  binding.etMasa.text.toString().trim(),
                     codigoSistema
 
                 )
@@ -51,7 +52,8 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
             } else if(binding.btnAddUpdateP.text.equals("actualizar")) {
                 planeta.edadPlaneta = binding.etEdadPlaneta.text.toString().trim()
                 // sistema.galaxia =binding.etGalaxia.text.toString().trim()
-               // planeta.descripcionPlaneta =binding.etDescripcionPlaneta.text.toString().trim()
+               planeta.descripcionP =binding.etDescripcionP.text.toString().trim()
+               // planeta.masa = binding.etMasa.text.toString().trim()
                 planeta.codigoSistema = codigoSistema
                 actualizarPlaneta(room2, planeta, codigoSistema)
             }
@@ -77,7 +79,7 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
 
     fun actualizarPlaneta(room: DBPlanetas, planeta: Planeta, codigoSistema: Int) {
         lifecycleScope.launch {
-            room.daoPlaneta().actualizarPlaneta(planeta.planeta, planeta.edadPlaneta, codigoSistema)
+            room.daoPlaneta().actualizarPlaneta(planeta.planeta, planeta.edadPlaneta, planeta.descripcionP,  codigoSistema)
             obtenerPlanetas(room, codigoSistema)
             limpiarCampos()
         }
@@ -86,12 +88,13 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
     fun limpiarCampos() {
         planeta.planeta = ""
         planeta.edadPlaneta = ""
-        //  sistema.galaxia =""
-       // planeta.descripcionPlaneta=""
+       planeta.descripcionP=""
+        //planeta.masa =""
         binding.etPlaneta.setText("")
         binding.etEdadPlaneta.setText("")
-        // binding.etGalaxia.setText("")
-        // binding.etDescripcionPlaneta.setText("")
+        binding.etDescripcionP.setText("")
+       // binding.etMasa.setText("")
+
 
         if (binding.btnAddUpdateP.text.equals("actualizar")) {
             binding.btnAddUpdateP.setText("agregar")
@@ -106,7 +109,8 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
         this.planeta = planeta
         binding.etPlaneta.setText(this.planeta.planeta)
         binding.etEdadPlaneta.setText(this.planeta.edadPlaneta)
-       // binding.etDescripcionPlaneta.setText(this.planeta.descripcionPlaneta)
+        binding.etDescripcionP.setText(this.planeta.descripcionP)
+        //binding.etMasa.setText(this.planeta.masa)
     }
 
     override fun onDeleteItemClick(planeta: Planeta, codigoSistema: Int) {
@@ -117,3 +121,7 @@ class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
         }
     }
 }
+
+
+
+

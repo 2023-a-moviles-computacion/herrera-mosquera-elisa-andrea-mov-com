@@ -27,8 +27,13 @@
             android:hint="Edad"
             android:inputType="text"
             android:minHeight="48dp" />
-
-
+        <EditText
+            android:id="@+id/etDescripcionP"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:hint="DescripcionP"
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/btnAddUpdateP"

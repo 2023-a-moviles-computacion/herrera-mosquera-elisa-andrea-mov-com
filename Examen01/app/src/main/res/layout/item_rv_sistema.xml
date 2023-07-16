@@ -41,6 +41,21 @@
                 android:gravity="center"
                 android:hint="Edad"
                 android:padding="5dp" />
+            <TextView
+                android:id="@+id/tvGalaxia"
+                android:layout_width="247dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Galaxia"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="247dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="Descripcion"
+                android:padding="5dp" />
 
 
             <Button
