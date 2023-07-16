@@ -1,0 +1,5 @@
+//Para Ingresar a Jira
+https://pablo-sarzosa.atlassian.net/jira/software/c/projects/HR2023/boards/2/backlog?issueLimit=100
+
+//Link de Inivitacion
+https://pablo-sarzosa.atlassian.net/jira/software/c/projects/HR2023/boards/2/backlog?atlOrigin=eyJpIjoiZDFiYmEwMmMwNmUwNDQwZGJiZWRhM2NiZjNiNTU3MmQiLCJwIjoiaiJ9
