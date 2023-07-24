@@ -37,9 +37,8 @@ class MainActivity : AppCompatActivity() {
                     Intent.ACTION_PICK,
                     ContactsContract.CommonDataKinds.Phone.CONTENT_URI
                 )
-
-                val callbackIntentPickUri
-                callbackIntentPickUri.launch(intentConRespuesta)
+                //val callbackIntentPickUri
+                //callbackIntentPickUri.launch(intentConRespuesta)
             }
         val botonIntentExplicito = findViewById<Button>(R.id.btn_ir_intent_explicito)
         botonIntentExplicito
@@ -57,6 +56,11 @@ class MainActivity : AppCompatActivity() {
         botonRView
             .setOnClickListener{
                 irActividad(FRecyclerView::class.java)
+            }
+        val botonGoogleMaps = findViewById<Button>(R.id.btn_google_maps)
+        botonGoogleMaps
+            .setOnClickListener {
+                irActividad(GGoogleMapsActivity::class.java)
             }
 }
 fun abrirActividadConParametros(
