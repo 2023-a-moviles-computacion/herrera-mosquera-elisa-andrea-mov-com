@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etPlaneta"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del Planeta"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etEdadPlaneta"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:hint="Edad"
+            android:inputType="text"
+            android:minHeight="48dp" />
+        <EditText
+            android:id="@+id/etDescripcionP"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:hint="DescripcionP"
+            android:inputType="text"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/btnAddUpdateP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="agregar" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlanetas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_rv_planeta" />
+
+</LinearLayout>
