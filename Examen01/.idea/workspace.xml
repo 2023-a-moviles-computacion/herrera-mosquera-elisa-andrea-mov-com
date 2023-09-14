@@ -9,32 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="783edb80-0a5e-4d71-83d5-7c008d315618" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Deber03/app/src/main/res/drawable/dell.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Deber03/app/src/main/res/drawable/lenovo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Deber03/app/src/main/res/drawable/mac.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Deber03/app/src/main/res/drawable/toshiba.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Deber03/app/src/main/res/layout/item_layout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Deber03/app/src/main/res/layout/item_layout1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber03/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Deber03/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorListener.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorListener2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorListener2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorPlanetas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorPlanetas.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorSistemas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/AdaptadorSistemas.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/DBPlanetas.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/DBPrueba.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/DaoPlaneta.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/DaoSistema.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/MainActivity2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/MainActivity2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/Planeta.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/examen01/Sistema.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-    </list>
+    <list default="true" id="783edb80-0a5e-4d71-83d5-7c008d315618" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
