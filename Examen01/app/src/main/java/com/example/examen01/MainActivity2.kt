@@ -6,122 +6,127 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
+import com.google.firebase.FirebaseApp
 import com.example.examen01.databinding.ActivityMain2Binding
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 
 class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
 
+    private val dataList = mutableListOf<Pair<String, Map<String, Any>>>()
     lateinit var binding: ActivityMain2Binding
-    var listaPlanetas: MutableList<Planeta> = mutableListOf()
     lateinit var adatador: AdaptadorPlanetas
-    lateinit var room: DBPrueba
-    lateinit var room2: DBPlanetas
-    lateinit var planeta: Planeta
+
+
+    val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+    val planetasCollection = db.collection("planetas")
+
+    var codigoSistemaVine: String? = null // Inicializarlo como null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        codigoSistemaVine = intent.getStringExtra("codigoSistema")
+
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.rvPlanetas.layoutManager = LinearLayoutManager(this)
-        room = Room.databaseBuilder(this, DBPrueba:: class.java, "dbPrueba").build()
-        room2 = Room.databaseBuilder(this, DBPlanetas::class.java, "dbPlanetas").build()
 
+        // Inicializa el adaptador aquí
+        adatador = AdaptadorPlanetas(emptyList(), this)
+        binding.rvPlanetas.adapter = adatador
+        cargarDatosYActualizarRecyclerView()
 
-        val codigoSistema = intent.getIntExtra("codigoSistema" ,0)
-        obtenerPlanetas(room2, codigoSistema)
 
         binding.btnAddUpdateP.setOnClickListener {
-            if(binding.etPlaneta.text.isNullOrEmpty() || binding.etEdadPlaneta.text.isNullOrEmpty() || binding.etDescripcionP.text.isNullOrEmpty()) {
-                Toast.makeText(this, "DEBES LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+            if(binding.etPlaneta.text.isNotBlank() && binding.etEdadPlaneta.text.isNotBlank() && binding.etDescripcionP.text.isNotBlank()) {
 
-            if (binding.btnAddUpdateP.text.equals("agregar")) {
-                planeta = Planeta(
-                    binding.etPlaneta.text.toString().trim(),
-                    binding.etEdadPlaneta.text.toString().trim(),
-                    //  binding.etGalaxia.text.toString().trim(),
-                    binding.etDescripcionP.text.toString().trim(),
-                  //  binding.etMasa.text.toString().trim(),
-                    codigoSistema
+                val dato = hashMapOf(
+                    "codigoSistema" to binding.etCodigoSistema.text.toString(),
 
+                    "planeta" to binding.etPlaneta.text.toString(),"edadPlaneta" to binding.etEdadPlaneta.text.toString(),
+                    //"codigoSistema" to binding.etCodigoSistema.text.toString(),
+                   // "planeta" to binding.etPlaneta.text.toString(),
+                    "descripcionP" to binding.etDescripcionP.text.toString()
                 )
-
-                agregarPlaneta(room2, planeta, codigoSistema)
-            } else if(binding.btnAddUpdateP.text.equals("actualizar")) {
-                planeta.edadPlaneta = binding.etEdadPlaneta.text.toString().trim()
-                // sistema.galaxia =binding.etGalaxia.text.toString().trim()
-               planeta.descripcionP =binding.etDescripcionP.text.toString().trim()
-               // planeta.masa = binding.etMasa.text.toString().trim()
-                planeta.codigoSistema = codigoSistema
-                actualizarPlaneta(room2, planeta, codigoSistema)
+                db.collection("planetas")
+                    .document(binding.etCodigoSistema.text.toString())
+                    .set(dato)
+                    .addOnSuccessListener { resultado ->
+                        binding.btnAddUpdateP.text ="Agregar"
+                        limpiarCampos()
+                        adatador.notifyDataSetChanged()
+                        cargarDatosYActualizarRecyclerView()
+                    }
+                    .addOnFailureListener{ exception ->
+                        binding.btnAddUpdateP.text = "No se pudo"
+                    }
             }
-        }
-
-    }
-
-    fun obtenerPlanetas(room: DBPlanetas, codigoSistema: Int) {
-        lifecycleScope.launch {
-            listaPlanetas = room.daoPlaneta().obtenerPlanetaPorCodigoPlaneta(codigoSistema)
-            adatador = AdaptadorPlanetas(listaPlanetas, this@MainActivity2)
-            binding.rvPlanetas.adapter = adatador
-        }
-    }
-
-    fun agregarPlaneta(room: DBPlanetas, planeta: Planeta, codigoSistema: Int) {
-        lifecycleScope.launch {
-            room.daoPlaneta().agregarPlaneta(planeta)
-            obtenerPlanetas(room, codigoSistema)
-            limpiarCampos()
-        }
-    }
-
-    fun actualizarPlaneta(room: DBPlanetas, planeta: Planeta, codigoSistema: Int) {
-        lifecycleScope.launch {
-            room.daoPlaneta().actualizarPlaneta(planeta.planeta, planeta.edadPlaneta, planeta.descripcionP,  codigoSistema)
-            obtenerPlanetas(room, codigoSistema)
-            limpiarCampos()
         }
     }
 
     fun limpiarCampos() {
-        planeta.planeta = ""
-        planeta.edadPlaneta = ""
-       planeta.descripcionP=""
+
         //planeta.masa =""
+        binding.etCodigoSistema.setText("")
         binding.etPlaneta.setText("")
         binding.etEdadPlaneta.setText("")
         binding.etDescripcionP.setText("")
        // binding.etMasa.setText("")
 
 
-        if (binding.btnAddUpdateP.text.equals("actualizar")) {
-            binding.btnAddUpdateP.setText("agregar")
-            binding.etPlaneta.isEnabled = true
-        }
+        if (binding.btnAddUpdateP.text.equals("agregar")) {
+            binding.btnAddUpdateP.setText("actualizar")
+            binding.etCodigoSistema.isEnabled = true
 
-    }
-
-    override fun onEditItemClick(planeta: Planeta, codigoSistema: Int) {
-        binding.btnAddUpdateP.setText("actualizar")
-        binding.etPlaneta.isEnabled = false
-        this.planeta = planeta
-        binding.etPlaneta.setText(this.planeta.planeta)
-        binding.etEdadPlaneta.setText(this.planeta.edadPlaneta)
-        binding.etDescripcionP.setText(this.planeta.descripcionP)
-        //binding.etMasa.setText(this.planeta.masa)
-    }
-
-    override fun onDeleteItemClick(planeta: Planeta, codigoSistema: Int) {
-        lifecycleScope.launch {
-            room2.daoPlaneta().borrarPlaneta(planeta.planeta)
             adatador.notifyDataSetChanged()
-            obtenerPlanetas(room2, codigoSistema)
         }
+
+    }
+
+    private fun cargarDatosYActualizarRecyclerView() {
+        codigoSistemaVine = intent.getStringExtra("codigoSistema")
+        planetasCollection
+            .whereEqualTo("codigoSistema", codigoSistemaVine)
+            .get()
+            .addOnSuccessListener { documentos ->
+                dataList.clear() // Limpia los datos anteriores
+                for (documento in documentos) {
+                    dataList.add(Pair(documento.id, documento.data))
+                }
+                val adapter = AdaptadorPlanetas(dataList, this)
+                binding.rvPlanetas.adapter = adapter
+                adatador.notifyDataSetChanged() // Notifica al adaptador que los datos han cambiado
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "No se ha podido conectar: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    override fun onEditItemClick(codigoSistema: String, data: Map<String, Any>) {
+        binding.btnAddUpdateP.setText("actualizar")
+        binding.etCodigoSistema.isEnabled = false
+        binding.etCodigoSistema.setText(codigoSistema)
+        binding.etPlaneta.setText(data["planeta"] as? String ?: "")
+        binding.etEdadPlaneta.setText(data["edadPlaneta"] as? String ?: "")
+        binding.etDescripcionP.setText(data["descripcionP"] as? String ?: "")
+        adatador.notifyDataSetChanged()
+        cargarDatosYActualizarRecyclerView()
+
+    }
+
+    override fun onDeleteItemClick(codigoSistema: String, data: Map<String, Any>) {
+        db.collection("planetas")
+            .document(codigoSistema)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this@MainActivity2, "Elemento eliminado", Toast.LENGTH_SHORT).show()
+                adatador.notifyDataSetChanged()
+                cargarDatosYActualizarRecyclerView()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this@MainActivity2, "Error al eliminar: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 }
-
-
-
-

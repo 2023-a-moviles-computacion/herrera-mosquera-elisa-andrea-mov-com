@@ -8,117 +8,124 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.examen01.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.Dispatchers
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.FirebaseApp
+
+
 
 class MainActivity : AppCompatActivity(), AdaptadorListener {
 
+    private val dataList = mutableListOf<Pair<String, Map<String, Any>>>()
     lateinit var binding: ActivityMainBinding
-    var listaSistemas: MutableList<Sistema> = mutableListOf()
     lateinit var adatador: AdaptadorSistemas
-    lateinit var room: DBPrueba
-    lateinit var sistema: Sistema
+
+    val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+    val sistemasCollection = db.collection("sistemas")
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.rvSistemas.layoutManager = LinearLayoutManager(this)
 
-        room = Room.databaseBuilder(this, DBPrueba::class.java, "dbPruebas").build()
 
-        obtenerSistemas(room)
+        adatador = AdaptadorSistemas(emptyList(),this)
+        binding.rvSistemas.adapter = adatador
+        cargarDatosYActualizarRecyclerView()
+
 
         binding.btnAddUpdate.setOnClickListener {
-            if(binding.etSistema.text.isNullOrEmpty() || binding.etEdad.text.isNullOrEmpty() || binding.etGalaxia.text.isNullOrEmpty()|| binding.etDescripcion.text.isNullOrEmpty()) {
-                Toast.makeText(this, "DEBES LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            if(binding.etSistema.text.isNotBlank() && binding.etEdad.text.isNotBlank() && binding.etGalaxia.text.isNotBlank()&& binding.etDescripcion.text.isNotBlank()) {
+               val dato = hashMapOf(
+
+                   "codigoSistema" to binding.etCodigoSistema.text.toString(),
+                   "Sistema" to binding.etSistema.text.toString(),
+                   "edad" to binding.etEdad.text.toString(),
+                   "galaxia" to binding.etGalaxia.text.toString(),
+                   "descripcion" to binding.etDescripcion.text.toString()
+               )
+
+                db.collection("sistemas")
+                    .document(binding.etCodigoSistema.text.toString())
+                    .set(dato)
+                    .addOnSuccessListener { resultado ->
+                        binding.btnAddUpdate.text ="Agregar"
+                        limpiarCampos()
+                        adatador.notifyDataSetChanged()
+                        cargarDatosYActualizarRecyclerView()
+                    }
+                    .addOnFailureListener{ exception ->
+                        binding.btnAddUpdate.text = "No se agrego"
+                    }
             }
-
-            if (binding.btnAddUpdate.text.equals("agregar")) {
-                sistema = Sistema(
-                    binding.etCodigoSistema.text.toString().toInt(),
-                    binding.etSistema.text.toString().trim(),
-                    binding.etEdad.text.toString().trim(),
-                   binding.etGalaxia.text.toString().trim(),
-                  binding.etDescripcion.text.toString().trim()
-
-                )
-
-                agregarSistema(room, sistema)
-            } else if(binding.btnAddUpdate.text.equals("actualizar")) {
-                sistema.edad = binding.etEdad.text.toString().trim()
-               sistema.galaxia =binding.etGalaxia.text.toString().trim()
-               sistema.descripcion =binding.etDescripcion.text.toString().trim()
-                sistema.codigoSistema = binding.etCodigoSistema.text.toString().toInt()
-                actualizarSistema(room, sistema)
-            }
-        }
-
-    }
-
-    fun obtenerSistemas(room: DBPrueba) {
-        lifecycleScope.launch {
-            listaSistemas = room.daoSistema().obtenerSistemas()
-            adatador = AdaptadorSistemas(listaSistemas, this@MainActivity)
-            binding.rvSistemas.adapter = adatador
         }
     }
 
-    fun agregarSistema(room: DBPrueba, sistema: Sistema) {
-        lifecycleScope.launch {
-            room.daoSistema().agregarSistema(sistema)
-            obtenerSistemas(room)
-            limpiarCampos()
-        }
-    }
-
-    fun actualizarSistema(room: DBPrueba, sistema: Sistema) {
-        lifecycleScope.launch {
-            room.daoSistema().actualizarSistema(sistema.codigoSistema, sistema.sistema, sistema.edad, sistema.galaxia,sistema.descripcion)
-            obtenerSistemas(room)
-            limpiarCampos()
-        }
-    }
 
     fun limpiarCampos() {
-        sistema.codigoSistema=0
-        sistema.sistema = ""
-        sistema.edad = ""
-        sistema.galaxia =""
-        sistema.descripcion=""
-
         binding.etCodigoSistema.setText("")
         binding.etSistema.setText("")
         binding.etEdad.setText("")
         binding.etGalaxia.setText("")
         binding.etDescripcion.setText("")
-
-
         if (binding.btnAddUpdate.text.equals("actualizar")) {
             binding.btnAddUpdate.setText("agregar")
             binding.etCodigoSistema.isEnabled = true
-        }
 
-    }
-
-    override fun onEditItemClick(sistema: Sistema) {
-        binding.btnAddUpdate.setText("actualizar")
-        binding.etCodigoSistema.isEnabled = false
-        this.sistema = sistema
-        binding.etCodigoSistema.setText(this.sistema.codigoSistema.toString())
-        binding.etSistema.setText(this.sistema.sistema)
-        binding.etEdad.setText(this.sistema.edad)
-        binding.etGalaxia.setText(this.sistema.galaxia)
-       binding.etDescripcion.setText(this.sistema.descripcion)
-
-    }
-    override fun onDeleteItemClick(sistema: Sistema) {
-        lifecycleScope.launch {
-            room.daoSistema().borrarSistema(sistema.codigoSistema)
             adatador.notifyDataSetChanged()
-            obtenerSistemas(room)
+            cargarDatosYActualizarRecyclerView()
         }
+
     }
+
+    private fun cargarDatosYActualizarRecyclerView() {
+        sistemasCollection
+            .get()
+            .addOnSuccessListener { documentos ->
+                dataList.clear()
+                for (documento in documentos) {
+                    dataList.add(Pair(documento.id, documento.data))
+                }
+                val adapter = AdaptadorSistemas(dataList, this)
+                binding.rvSistemas.adapter = adapter
+                adatador.notifyDataSetChanged()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(
+                    this,
+                    "No se ha podido conectar: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    override fun onEditItemClick(codigoSistema: String, data: Map<String, Any>) {
+        binding.btnAddUpdate.setText("Actualizar")
+        binding.etCodigoSistema.isEnabled = false
+        binding.etCodigoSistema.setText(codigoSistema)
+        binding.etSistema.setText(data["sistema"] as? String ?: "")
+        binding.etEdad.setText(data["edad"] as? String ?: "")
+        binding.etGalaxia.setText(data["galaxia"] as? String ?: "")
+        binding.etDescripcion.setText(data["descripcion"] as? String ?: "")
+        adatador.notifyDataSetChanged()
+        cargarDatosYActualizarRecyclerView()
+    }
+
+    override fun onDeleteItemClick(codigoSistema: String, data: Map<String, Any>) {
+        db.collection("sistemas")
+            .document(codigoSistema)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this@MainActivity, "Elemento eliminado", Toast.LENGTH_SHORT).show()
+                adatador.notifyDataSetChanged()
+                cargarDatosYActualizarRecyclerView()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this@MainActivity, "Error al eliminar: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+
+    }
+
 }

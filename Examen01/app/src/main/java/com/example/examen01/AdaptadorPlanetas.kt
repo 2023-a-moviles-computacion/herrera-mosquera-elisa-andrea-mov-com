@@ -9,7 +9,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdaptadorPlanetas(
-    val listaPlanetas: MutableList<Planeta>,
+    val listaPlanetas:List<Pair<String, Map<String, Any>>>,
     val listener: AdaptadorListener2
 ): RecyclerView.Adapter<AdaptadorPlanetas.ViewHolder>() {
 
@@ -19,20 +19,22 @@ class AdaptadorPlanetas(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val planeta = listaPlanetas[position]
+        val (id, data) = listaPlanetas[position]
 
-        holder.tvPlaneta.text = planeta.planeta
-        holder.tvEdadPlaneta.text = planeta.edadPlaneta.toString()
-        holder.tvDescripcionP.text = planeta.descripcionP
-       // holder.tvMasa.text = planeta.masa
-        holder.tvCodigoSistemaPlaneta.text = planeta.codigoSistema.toString()
+        holder.tvCodigoSistema.text = id
+        holder.tvPlaneta.text = data["planeta"] as? String ?: ""
+        holder.tvEdadPlaneta.text = data["edadPlaneta"] as? String ?: ""
+        holder.tvDescripcionP.text =data["descripcionP"] as? String ?: ""
+       // holder.tvMasa.text = data["masa"] as? String ?: ""
+        //holder.tvCodigoSistemaPlaneta.text = planeta.codigoSistema.toString()
 
         holder.cvPlaneta.setOnClickListener {
-            listener.onEditItemClick(planeta, planeta.codigoSistema)
+            listener.onEditItemClick(id, data)
         }
 
         holder.btnBorrarP.setOnClickListener {
-            listener.onDeleteItemClick(planeta, planeta.codigoSistema)
+            val (id, data) = listaPlanetas[position]
+            listener.onDeleteItemClick(id, data)
         }
     }
 
@@ -42,7 +44,7 @@ class AdaptadorPlanetas(
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val cvPlaneta = itemView.findViewById<CardView>(R.id.cvPlaneta)
-        val tvCodigoSistemaPlaneta = itemView.findViewById<TextView>(R.id.tvCodigoSistema)
+        val tvCodigoSistema = itemView.findViewById<TextView>(R.id.tvCodigoSistema)
         val tvPlaneta = itemView.findViewById<TextView>(R.id.tvPlaneta)
         val tvEdadPlaneta = itemView.findViewById<TextView>(R.id.tvEdadPlaneta)
         val tvDescripcionP = itemView.findViewById<TextView>(R.id.tvDescripcionP)

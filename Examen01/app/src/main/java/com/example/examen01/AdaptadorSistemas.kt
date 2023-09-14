@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdaptadorSistemas(
-    val listaSistemas: MutableList<Sistema>,
+    val listaSistemas: List<Pair<String, Map<String, Any>>>,
     val listener: AdaptadorListener
 ): RecyclerView.Adapter<AdaptadorSistemas.ViewHolder>() {
 
@@ -20,24 +20,24 @@ class AdaptadorSistemas(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val sistema = listaSistemas[position]
-        holder.tvCodigoSistema.text = sistema.codigoSistema.toString()
-        holder.tvSistema.text = sistema.sistema
-        holder.tvEdad.text = sistema.edad
-        holder.tvGalaxia.text =sistema.galaxia
-       holder.tvDescripcion.text =sistema.descripcion
-
+        val (id, data) = listaSistemas[position]
+        holder.tvCodigoSistema.text = id
+        holder.tvSistema.text = data["sistema"] as? String ?: ""
+        holder.tvEdad.text = data["edad"] as? String ?: ""
+        holder.tvGalaxia.text =data["galaxia"] as? String ?: ""
+        holder.tvDescripcion.text =data["descripcion"] as? String ?: ""
         holder.cvSistema.setOnClickListener {
-            listener.onEditItemClick(sistema)
+            listener.onEditItemClick(id, data)
         }
 
         holder.btnBorrar.setOnClickListener {
-            listener.onDeleteItemClick(sistema)
+            val (id,data)=listaSistemas[position]
+            listener.onDeleteItemClick(id,data)
         }
         holder.btnCrear.setOnClickListener {
-
+            val(id, _) = listaSistemas[position]
             val intent = Intent(holder.itemView.context, MainActivity2::class.java)
-            intent.putExtra("codigoSistema", sistema.codigoSistema)
+            intent.putExtra("codigoSistema", id)
             holder.itemView.context.startActivity(intent)
         }
     }

@@ -1,6 +1,6 @@
 package com.example.examen01
 
 interface AdaptadorListener {
-    fun onEditItemClick(sistema: Sistema)
-    fun onDeleteItemClick(sistema: Sistema)
+    fun onEditItemClick(codigoSistema: String, data: Map<String, Any>)
+    fun onDeleteItemClick(codigoistema:String, data: Map<String, Any>)
 }
