@@ -3,13 +3,9 @@ package com.example.examen01
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
-import com.google.firebase.FirebaseApp
 import com.example.examen01.databinding.ActivityMain2Binding
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.launch
 
 
 class MainActivity2 : AppCompatActivity(), AdaptadorListener2 {
