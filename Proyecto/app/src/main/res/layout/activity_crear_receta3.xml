@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".CrearRecetaActivity3">
+
+
+
+    <EditText
+        android:id="@+id/editTextNombrePlato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del plato"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editTextDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editTextIngredientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingredientes"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_publicar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Publicar" />
+</LinearLayout>
